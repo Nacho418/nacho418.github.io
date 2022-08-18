@@ -1,5 +1,8 @@
-let sumaTot = 0
-alert("Los tipos de chapa se visualizan en el HTML")
+function comprar() {
+    sumaTot = 0
+    precioTotal = 0
+    newItem()
+}
 function newItem() {
     let type = parseInt(prompt("Elija tipo de chapa"))
     switch (type) {
@@ -55,24 +58,27 @@ function continuar() {
 }
 function consultar(sumaTot) {
     let cuotas = prompt("¿Desea realizar el pago en cuotas? Y / N")
+    let precioTotal = sumaTot
     if (cuotas == "Y") {
         let cantCuotas = 1
         while (cantCuotas <= 1 || cantCuotas > 18 || cantCuotas == null || isNaN(cantCuotas))
             cantCuotas = prompt("Ingrese cantidad de cuotas (2 a 18 - 5% mensual)")
-
         for (let i = 2; i <= cantCuotas; i++) {
-            precioTotal = sumaTot * (5 / 100) * i + sumaTot
+            precioTotal *= 1.05
         }
-        alert("Su total a abonar es de $" + precioTotal + " en " + cantCuotas + " pagos.")
+        alert("Su total a abonar es de $" + Math.floor(precioTotal) + " en " + cantCuotas + " pagos.")
         alert("Gracias por su compra")
     }
     else if (cuotas == "N") {
-        alert("Su total a abonar es de $" + sumaTot + " en 1 pago")
+        alert("Su total a abonar es de $" + Math.floor(precioTotal) + " en 1 pago")
         alert("Gracias por su compra")
     }
     else {
         consultar(sumaTot)
     }
 }
-let boton = document.querySelector("button")
-boton.addEventListener("click",newItem)
+let sumaTot = 0
+alert("Los tipos de chapa se visualizan en el HTML")
+let boton = document.querySelector("#Comprar")
+boton.addEventListener("click", comprar)
+
