@@ -109,6 +109,13 @@ function finalizarVenta(venta) {
     }
     alert("Gracias por su compra")
 }
+function calcAcum(cantVentas) {
+    acum = 0
+    for (let i = 0; i <= cantVentas.length - 1; i++) {
+        acum += cantVentas[i]
+    }
+    return acum
+}
 class Venta {
     constructor(numVenta, cantProd, pago, enCuotas, cantCuotas, pesoTot) {
         this.numVenta = numVenta;
@@ -118,12 +125,6 @@ class Venta {
         this.cantCuotas = cantCuotas;
         this.pesoTot = pesoTot;
     }
-}
-function calcAcum(cantVentas) {
-    for (let i = 0; i <= cantVentas.length - 1; i++) {
-        acum += cantVentas[i]
-    }
-    return acum
 }
 let acum = 0
 let ventas = []
