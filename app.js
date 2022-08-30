@@ -4,6 +4,7 @@ function comprar() {
     productos = 0
     vendido = new Venta()
     peso = 0
+    vendido.fecha = day
     newItem()
     console.log("Venta N° " + vendido.numVenta)
     console.log(vendido)
@@ -116,23 +117,38 @@ function calcAcum(cantVentas) {
     }
     return acum
 }
+function verVenta() {
+    let numVen = parseInt(prompt("Ingrese número de venta"))
+    if (ventas.some((venta) => venta.numVenta == numVen)) {
+        let buscado = ventas.find(venta => venta.numVenta == numVen)
+        console.log(buscado)
+    } else {
+        alert("Ticket no encontrado, intente nuevamente")
+    }
+}
 class Venta {
-    constructor(numVenta, cantProd, pago, enCuotas, cantCuotas, pesoTot) {
+    constructor(numVenta, cantProd, pago, enCuotas, cantCuotas, pesoTot,fecha) {
         this.numVenta = numVenta;
         this.cantProd = cantProd;
         this.pago = pago;
         this.enCuotas = enCuotas;
         this.cantCuotas = cantCuotas;
         this.pesoTot = pesoTot;
+        this.fecha = fecha;
     }
 }
+let day = new Date()
 let acum = 0
 let ventas = []
 let cantVentas = []
 let productos = 0
 let sumaTot = 0
 let numVenta = 0
-alert("Los tipos de chapa se visualizan en el HTML")
-let boton = document.querySelector("#Comprar")
-boton.addEventListener("click", comprar)
+let boton1 = document.querySelector(".comprar")
+boton1.addEventListener("click", comprar)
+let boton2 = document.querySelector(".buscarVenta")
+boton2.addEventListener("click", verVenta)
+let hoy = [day.getDate(), day.getMonth(), day.getFullYear()]
+let hoyStr = day.toDateString()
+document.querySelector(".fecha").textContent = hoyStr
 
